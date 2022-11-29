@@ -83,7 +83,7 @@ class BinaryTree
         Console.Write(Tree.Data + " ");
     }
 
-    public int FindMax(Node Tree)
+    public int FindMax(Node Tree) // максимальне значення
     {
         if (Tree == null || Tree?.Data == null) throw new Exception("Tree is null");
 
@@ -93,7 +93,7 @@ class BinaryTree
         return Tree.Data;
     }
 
-    public int FindMin(Node Tree)
+    public int FindMin(Node Tree) // мінімальне значення
     {
         if (Tree == null || Tree?.Data == null) throw new Exception("Tree is null");
 
@@ -102,4 +102,6 @@ class BinaryTree
 
         return Tree.Data;
     }
+
+
 }
