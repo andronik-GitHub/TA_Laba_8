@@ -4,6 +4,8 @@ using System.Xml.Linq;
 class BinaryTree
 {
     public Node? Root { get; set; } // корінь
+    public int Count { get; set; } = 0;
+
 
     public void AutoAdd(int numbers) // додавання в дерево numbers вибадкових значень
     {
@@ -38,6 +40,7 @@ class BinaryTree
                 before.RightNode = newNode;
         }
 
+        Count++;
         return true;
     }
 
@@ -101,44 +104,54 @@ class BinaryTree
         return Tree.Data;
     }
 
-    public Node? DeleteEvenValue(Node? Tree) // Видалення всіх парних елементів
+    public int FindEvenElements(Node? Tree)
     {
-        if (Tree == null) return Tree;
+        if (Tree == null || Tree?.Data == null) throw new Exception("Tree is null");
 
-        Node? V;
-        if (Tree != null && Tree.Data % 2 == 0)
+        while (Tree.LeftNode != null)
         {
-            if (Tree.RightNode == null) Tree = Tree.LeftNode;
-            else if (Tree.RightNode == null) Tree = Tree.RightNode;
-            else
-            {
-                V = Tree.LeftNode;
-
-                if (V != null && V.RightNode != null)
-                {
-                    while (V.RightNode != null && V.RightNode.RightNode != null) V = V.RightNode;
-
-                    if (V.RightNode != null)
-                    {
-                        Tree.Data = V.RightNode.Data;
-                        V.RightNode = V.RightNode.LeftNode;
-                    }
-                }
-                else if (V != null)
-                {
-                    Tree.Data = V.Data;
-
-                    if (Tree.LeftNode != null)
-                        Tree.LeftNode = Tree.LeftNode.LeftNode;
-                }
-            }
+            if (Tree.Data % 2 == 0) return Tree.Data;
+            Tree = Tree.LeftNode;
         }
-        else
+        while (Tree.RightNode != null)
         {
-            DeleteEvenValue(Tree?.LeftNode);
-            DeleteEvenValue(Tree?.RightNode);
+            if (Tree.Data % 2 == 0) return Tree.Data;
+            Tree = Tree.RightNode;
+        }
+
+        return 0;
+    }
+
+    public Node? DeleteEvenValue(Node? Tree)
+    {
+        for (int i = 0; i < Count; i++)
+        {
+            Console.WriteLine(FindEvenElements(Tree));
+            Tree = Remove(Tree, FindEvenElements(Tree));
         }
 
         return Tree;
+    }
+
+    private Node? Remove(Node? parent, int key)
+    {
+        if (parent == null) return parent;
+
+        if (key < parent.Data) parent.LeftNode = Remove(parent.LeftNode, key);
+        else if (key > parent.Data) parent.RightNode = Remove(parent.RightNode, key);
+        else
+        {
+            if (parent.LeftNode == null)
+                return parent.RightNode;
+            else if (parent.RightNode == null)
+                return parent.LeftNode;
+ 
+            parent.Data = FindMin(parent.RightNode);
+
+            parent.RightNode = Remove(parent.RightNode, parent.Data);
+        }
+
+        Count--;
+        return parent;
     }
 }
