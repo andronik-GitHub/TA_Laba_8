@@ -34,7 +34,7 @@ class BinaryTree
         {
             if (value < before?.Data)
                 before.LeftNode = newNode;
-            else if (before?.RightNode != null)
+            else
                 before.RightNode = newNode;
         }
 
