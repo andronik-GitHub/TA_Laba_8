@@ -101,30 +101,18 @@ class BinaryTree
         return Tree.Data;
     }
 
-    public Node? DeleteEvenValue(Node? Tree, int key)
+    public void DeleteEvenValue(Node? Tree)
     {
-        if (Tree == null) return Tree;
+        if (Tree == null) return;
 
-        if (key < Tree.Data) Tree.LeftNode = DeleteEvenValue(Tree.LeftNode, key);
-        else if (key > Tree.Data)
-            Tree.RightNode = DeleteEvenValue(Tree.RightNode, key);
+        DeleteEvenValue(Tree.LeftNode);
+        DeleteEvenValue(Tree.RightNode);
 
-        // якщо значення збігається зі значенням батьківського елемента, то цей вузол буде видалено
-        else
+        if (Tree.Data % 2 == 0)
         {
-            // вузол лише з одним дочірнім елементом або без нього 
-            if (Tree.LeftNode == null)
-                return Tree.RightNode;
-            else if (Tree.RightNode == null)
-                return Tree.LeftNode;
-
-            // вузол із двома дочірніми елементами: отримати наступника за порядком (найменший у правому піддереві)  
-            Tree.Data = FindMin(Tree.RightNode);
-
-            // Видалити наступника по порядку  
-            Tree.RightNode = DeleteEvenValue(Tree.RightNode, Tree.Data);
+            if (Tree.LeftNode != null) Tree = Tree.LeftNode;
+            else if (Tree.RightNode != null) Tree = Tree.RightNode;
+            else Tree = null;
         }
-
-        return Tree;
     }
 }
