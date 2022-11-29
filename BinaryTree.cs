@@ -101,7 +101,7 @@ class BinaryTree
         return Tree.Data;
     }
 
-    public Node? DeleteEvenValue(Node? Tree)
+    public Node? DeleteEvenValue(Node? Tree) // Видалення всім парних елементів
     {
         if (Tree == null) return Tree;
 
