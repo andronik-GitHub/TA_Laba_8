@@ -16,11 +16,8 @@ class Laba_8
                     break;
                 else if (value[0]?.ToLower() == "rand")
                 {
-                    string temp = "";
-                    for (int i = 1; i < value.Length; i++)
-                        temp += value[i];
-
-                    binaryTree.AutoAdd(Convert.ToInt32(temp));
+                    binaryTree.AutoAdd(Convert.ToInt32(value[1]));
+                    break;
                 }
                 else if (value[0] != "")
                     binaryTree.Add(Convert.ToInt32(value[0]));
@@ -42,6 +39,9 @@ class Laba_8
 
             Console.Write($"\nMax: {binaryTree.FindMax(binaryTree.Root)}");
             Console.Write($"\nMin: {binaryTree.FindMin(binaryTree.Root)}");
+
+            binaryTree.DeleteEvenValue(binaryTree.Root);
+            binaryTree.Print_Tree(0, binaryTree.Root);
         }
 
 

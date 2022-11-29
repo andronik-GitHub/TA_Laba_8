@@ -103,5 +103,30 @@ class BinaryTree
         return Tree.Data;
     }
 
+    public Node? DeleteEvenValue(Node? Tree, int key)
+    {
+        if (Tree == null) return Tree;
 
+        if (key < Tree.Data) Tree.LeftNode = DeleteEvenValue(Tree.LeftNode, key);
+        else if (key > Tree.Data)
+            Tree.RightNode = DeleteEvenValue(Tree.RightNode, key);
+
+        // if value is same as parent's value, then this is the node to be deleted  
+        else
+        {
+            // node with only one child or no child  
+            if (Tree.LeftNode == null)
+                return Tree.RightNode;
+            else if (Tree.RightNode == null)
+                return Tree.LeftNode;
+
+            // node with two children: Get the inorder successor (smallest in the right subtree)  
+            Tree.Data = FindMin(Tree.RightNode);
+
+            // Delete the inorder successor  
+            Tree.RightNode = DeleteEvenValue(Tree.RightNode, Tree.Data);
+        }
+
+        return Tree;
+    }
 }
