@@ -38,8 +38,6 @@ class BinaryTree
                 before.RightNode = newNode;
         }
 
-        Console.WriteLine(newNode.Data);
-
         return true;
     }
 
