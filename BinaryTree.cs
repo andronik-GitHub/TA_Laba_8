@@ -45,12 +45,12 @@ class BinaryTree
     {
         if (Tree != null)
         {
-            Print_Tree(l + 2, Tree.LeftNode);
+            Print_Tree(l + 2, Tree.RightNode);
 
             for (int i = 1; i <= l; i++) Console.Write(" ");
             Console.WriteLine(Tree.Data);
 
-            Print_Tree(l + 2, Tree.RightNode);
+            Print_Tree(l + 2, Tree.LeftNode);
         }
     }
 
