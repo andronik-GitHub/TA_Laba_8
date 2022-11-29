@@ -109,19 +109,19 @@ class BinaryTree
         else if (key > Tree.Data)
             Tree.RightNode = DeleteEvenValue(Tree.RightNode, key);
 
-        // if value is same as parent's value, then this is the node to be deleted  
+        // якщо значення збігається зі значенням батьківського елемента, то цей вузол буде видалено
         else
         {
-            // node with only one child or no child  
+            // вузол лише з одним дочірнім елементом або без нього 
             if (Tree.LeftNode == null)
                 return Tree.RightNode;
             else if (Tree.RightNode == null)
                 return Tree.LeftNode;
 
-            // node with two children: Get the inorder successor (smallest in the right subtree)  
+            // вузол із двома дочірніми елементами: отримати наступника за порядком (найменший у правому піддереві)  
             Tree.Data = FindMin(Tree.RightNode);
 
-            // Delete the inorder successor  
+            // Видалити наступника по порядку  
             Tree.RightNode = DeleteEvenValue(Tree.RightNode, Tree.Data);
         }
 
