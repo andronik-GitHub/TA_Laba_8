@@ -2,15 +2,15 @@
 
 class BinaryTree
 {
-    public Node? Root { get; set; }
+    public Node? Root { get; set; } // корінь
 
-    public void AutoAdd(int numbers)
+    public void AutoAdd(int numbers) // додавання в дерево numbers вибадкових значень
     {
         for (int i = 0; i < numbers; i++)
             Add(new Random().Next(1,100));
     }
 
-    public bool Add(int value)
+    public bool Add(int value) // додавання певного елемента в дерево
     {
         Node? before = null;
         Node? after = this.Root;
@@ -18,16 +18,16 @@ class BinaryTree
         while (after != null)
         {
             before = after;
-            if (value <= after.Data) // Чи є новий вузол у лівому дереві
+            if (value <= after.Data) // чи є новий вузол у лівому дереві
                 after = after.LeftNode;
-            else if (value > after.Data) // Чи є новий вузол у правому дереві
+            else if (value > after.Data) // чи є новий вузол у правому дереві
                 after = after.RightNode;
         }
 
         Node newNode = new Node();
         newNode.Data = value;
 
-        if (this.Root == null) // Дерево порожнє
+        if (this.Root == null) // дерево порожнє
             this.Root = newNode;
         else
         {
@@ -40,7 +40,7 @@ class BinaryTree
         return true;
     }
 
-    public void Print_Tree(int l, Node? Tree)
+    public void Print_Tree(int l, Node? Tree) // вивід дерева
     {
         if (Tree != null)
         {
@@ -51,5 +51,32 @@ class BinaryTree
 
             Print_Tree(l + 2, Tree.LeftNode);
         }
+    }
+
+    public void PreOrder(Node? Tree) // обхід в прямому порядку
+    {
+        if (Tree == null) return;
+
+        Console.Write(Tree.Data + " ");
+        PreOrder(Tree.LeftNode);
+        PreOrder(Tree.RightNode);
+    }
+
+    public void InOrder(Node? Tree) // обхід в симетричному порядку
+    {
+        if (Tree == null) return;
+
+        PreOrder(Tree.LeftNode);
+        Console.Write(Tree.Data + " ");
+        PreOrder(Tree.RightNode);
+    }
+
+    public void PostOrder(Node? Tree) // обхід в зворотньому порядку
+    {
+        if (Tree == null) return;
+
+        PreOrder(Tree.LeftNode);
+        PreOrder(Tree.RightNode);
+        Console.Write(Tree.Data + " ");
     }
 }
