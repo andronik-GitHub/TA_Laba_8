@@ -101,19 +101,43 @@ class BinaryTree
         return Tree.Data;
     }
 
-    public Node? DeleteEvenValue(Node? Tree) // Видалення всім парних елементів
+    public Node? DeleteEvenValue(Node? Tree) // Видалення всіх парних елементів
     {
         if (Tree == null) return Tree;
 
-        if (Tree.Data % 2 == 0)
+        Node? V;
+        if (Tree != null && Tree.Data % 2 == 0)
         {
-            if (Tree.LeftNode != null) Tree = Tree.LeftNode;
-            else if (Tree.RightNode != null) Tree = Tree.RightNode;
-            else Tree = null;
-        }
+            if (Tree.RightNode == null) Tree = Tree.LeftNode;
+            else if (Tree.RightNode == null) Tree = Tree.RightNode;
+            else
+            {
+                V = Tree.LeftNode;
 
-        DeleteEvenValue(Tree?.LeftNode);
-        DeleteEvenValue(Tree?.RightNode);
+                if (V != null && V.RightNode != null)
+                {
+                    while (V.RightNode != null && V.RightNode.RightNode != null) V = V.RightNode;
+
+                    if (V.RightNode != null)
+                    {
+                        Tree.Data = V.RightNode.Data;
+                        V.RightNode = V.RightNode.LeftNode;
+                    }
+                }
+                else if (V != null)
+                {
+                    Tree.Data = V.Data;
+
+                    if (Tree.LeftNode != null)
+                        Tree.LeftNode = Tree.LeftNode.LeftNode;
+                }
+            }
+        }
+        else
+        {
+            DeleteEvenValue(Tree?.LeftNode);
+            DeleteEvenValue(Tree?.RightNode);
+        }
 
         return Tree;
     }
