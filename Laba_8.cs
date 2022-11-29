@@ -29,6 +29,8 @@ class Laba_8
         {
             Console.WriteLine("Tree:\n\n");
             binaryTree.Print_Tree(0, binaryTree.Root);
+
+            Console.WriteLine("=========================================\n");
             /*
             Console.WriteLine("\n\nOбхід в прямому порядку:");
             binaryTree.PreOrder(binaryTree.Root);
@@ -36,17 +38,14 @@ class Laba_8
             binaryTree.InOrder(binaryTree.Root);
             Console.WriteLine("\nOбхід в зворотньому порядку:");
             binaryTree.PostOrder(binaryTree.Root);
-
             Console.Write($"\nMax: {binaryTree.FindMax(binaryTree.Root)}");
             Console.Write($"\nMin: {binaryTree.FindMin(binaryTree.Root)}\n");
             */
-            Console.WriteLine("=========================================");
-            Console.WriteLine(binaryTree.Count);
-            binaryTree.Root = binaryTree.DeleteEvenValue(binaryTree.Root);
-            Console.WriteLine(binaryTree.Count);
-            Console.WriteLine("=========================================\n\n");
+            binaryTree.DeleteEvenValue(binaryTree.Root);
+            Console.WriteLine("Tree:\n\n");
             binaryTree.Print_Tree(0, binaryTree.Root);
 
+            //Console.WriteLine("Sum: " + binaryTree.Sum(binaryTree.Root));
         }
 
 

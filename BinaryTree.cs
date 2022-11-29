@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class BinaryTree
 {
@@ -104,25 +105,18 @@ class BinaryTree
         return Tree.Data;
     }
 
-    public int FindEvenElements(Node? Tree)
+    public int FindEvenElements(Node? Tree) // пошук парного елемента
     {
         if (Tree == null || Tree?.Data == null) throw new Exception("Tree is null");
 
-        while (Tree.LeftNode != null)
-        {
-            if (Tree.Data % 2 == 0) return Tree.Data;
-            Tree = Tree.LeftNode;
-        }
-        while (Tree.RightNode != null)
-        {
-            if (Tree.Data % 2 == 0) return Tree.Data;
-            Tree = Tree.RightNode;
-        }
+        if (Tree.Data % 2 == 0) return Tree.Data;
+        FindEvenElements(Tree.LeftNode);
+        FindEvenElements(Tree.RightNode);
 
         return 0;
     }
 
-    public Node? DeleteEvenValue(Node? Tree)
+    public Node? DeleteEvenValue(Node? Tree) // видалення парних елементів
     {
         for (int i = 0; i < Count; i++)
         {
@@ -133,7 +127,7 @@ class BinaryTree
         return Tree;
     }
 
-    private Node? Remove(Node? parent, int key)
+    private Node? Remove(Node? parent, int key) // видалення елемента за значенням
     {
         if (parent == null) return parent;
 
@@ -153,5 +147,27 @@ class BinaryTree
 
         Count--;
         return parent;
+    }
+
+    public int Counter(Node? Tree, int key, int num = 0) // кільіксть входжень елемента
+    {
+        if (Tree == null) return 0;
+
+        if (Tree.Data == key) num++;
+        Counter(Tree.LeftNode, key, num);
+        Counter(Tree.LeftNode, key, num);
+
+        return num;
+    }
+
+    public int Sum(Node? Tree, int sum = 0) // сума всіх елеметів
+    {
+        if (Tree == null) return 0;
+
+        sum += Tree.Data;
+        Counter(Tree.LeftNode, sum);
+        Counter(Tree.LeftNode, sum);
+
+        return sum;
     }
 }
