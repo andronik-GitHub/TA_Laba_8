@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 class BinaryTree
 {
@@ -33,7 +34,7 @@ class BinaryTree
         {
             if (value < before?.Data)
                 before.LeftNode = newNode;
-            else
+            else if (before?.RightNode != null)
                 before.RightNode = newNode;
         }
 
@@ -78,5 +79,25 @@ class BinaryTree
         PreOrder(Tree.LeftNode);
         PreOrder(Tree.RightNode);
         Console.Write(Tree.Data + " ");
+    }
+
+    public int FindMax(Node Tree)
+    {
+        if (Tree == null || Tree?.Data == null) throw new Exception("Tree is null");
+
+
+        while (Tree.RightNode != null) Tree = Tree.RightNode;
+
+        return Tree.Data;
+    }
+
+    public int FindMin(Node Tree)
+    {
+        if (Tree == null || Tree?.Data == null) throw new Exception("Tree is null");
+
+
+        while (Tree.LeftNode != null) Tree = Tree.LeftNode;
+
+        return Tree.Data;
     }
 }
