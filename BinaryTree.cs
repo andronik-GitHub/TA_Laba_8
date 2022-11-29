@@ -45,12 +45,12 @@ class BinaryTree
     {
         if (Tree != null)
         {
-            Print_Tree(l + 2, Tree.RightNode);
+            Print_Tree(l + 2, Tree.LeftNode);
 
             for (int i = 1; i <= l; i++) Console.Write(" ");
             Console.WriteLine(Tree.Data);
 
-            Print_Tree(l + 2, Tree.LeftNode);
+            Print_Tree(l + 2, Tree.RightNode);
         }
     }
 
@@ -101,18 +101,22 @@ class BinaryTree
         return Tree.Data;
     }
 
-    public void DeleteEvenValue(Node? Tree)
+    public Node? DeleteEvenValue(Node? Tree)
     {
         if (Tree == null) return;
 
-        DeleteEvenValue(Tree.LeftNode);
-        DeleteEvenValue(Tree.RightNode);
-
         if (Tree.Data % 2 == 0)
-        {
+        // якщо значення збігається зі значенням батьківського елемента, то цей вузол буде видалено
             if (Tree.LeftNode != null) Tree = Tree.LeftNode;
             else if (Tree.RightNode != null) Tree = Tree.RightNode;
             else Tree = null;
         }
+
+        DeleteEvenValue(Tree?.LeftNode);
+        DeleteEvenValue(Tree?.RightNode);
+
+        return Tree;
+
+        return Tree;
     }
 }

@@ -29,7 +29,7 @@ class Laba_8
         {
             Console.WriteLine("Tree:\n\n");
             binaryTree.Print_Tree(0, binaryTree.Root);
-
+            /*
             Console.WriteLine("\n\nOбхід в прямому порядку:");
             binaryTree.PreOrder(binaryTree.Root);
             Console.WriteLine("\nOбхід в симетричному порядку:");
@@ -38,7 +38,12 @@ class Laba_8
             binaryTree.PostOrder(binaryTree.Root);
 
             Console.Write($"\nMax: {binaryTree.FindMax(binaryTree.Root)}");
-            Console.Write($"\nMin: {binaryTree.FindMin(binaryTree.Root)}");
+            Console.Write($"\nMin: {binaryTree.FindMin(binaryTree.Root)}\n");
+            */
+            Console.WriteLine("=========================================\n\n");
+            binaryTree.Root = binaryTree.DeleteEvenValue(binaryTree.Root);
+            binaryTree.Print_Tree(0, binaryTree.Root);
+
         }
 
 
