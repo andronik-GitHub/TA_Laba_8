@@ -39,9 +39,6 @@ class Laba_8
 
             Console.Write($"\nMax: {binaryTree.FindMax(binaryTree.Root)}");
             Console.Write($"\nMin: {binaryTree.FindMin(binaryTree.Root)}");
-
-            binaryTree.DeleteEvenValue(binaryTree.Root);
-            binaryTree.Print_Tree(0, binaryTree.Root);
         }
 
 
