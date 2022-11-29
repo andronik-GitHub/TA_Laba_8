@@ -103,10 +103,10 @@ class BinaryTree
 
     public Node? DeleteEvenValue(Node? Tree)
     {
-        if (Tree == null) return;
+        if (Tree == null) return Tree;
 
         if (Tree.Data % 2 == 0)
-        // якщо значення збігається зі значенням батьківського елемента, то цей вузол буде видалено
+        {
             if (Tree.LeftNode != null) Tree = Tree.LeftNode;
             else if (Tree.RightNode != null) Tree = Tree.RightNode;
             else Tree = null;
@@ -114,8 +114,6 @@ class BinaryTree
 
         DeleteEvenValue(Tree?.LeftNode);
         DeleteEvenValue(Tree?.RightNode);
-
-        return Tree;
 
         return Tree;
     }
